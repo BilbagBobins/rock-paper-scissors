@@ -50,21 +50,27 @@ function game() {
     for (let i = 0; i < 5; i++) {
         const playerSelection = prompt("Rock, Paper, Scissors... GO!");
         const computerSelection = computerPlay();
-        console.log("Computer plays ", computerSelection);
+        console.log("%c Computer plays", "color: blue", computerSelection);
         const game = playRound(playerSelection, computerSelection);
         if (game === "win") {
             playerCount++;
         } else if (game === "lose") {
             computerCount++;
+            // if a draw happens or wrong/no input it does not count as a round  
+                //and for loop counter is neutralised
+        } else {
+            i--;
         }
         console.log("Player wins: ", playerCount, "\n","Computer wins: ", computerCount);
+
+        if (playerCount === 3 || computerCount === 3) {
+            break;
+        }
     }
     if (playerCount > computerCount) {
-        console.log("Player wins the game!")
-    } else if (computerCount > playerCount) {
-        console.log("Computer wins the game!")
+        console.log("%c *** Player wins the game! ***", "color: green");
     } else {
-        console.log("It's a bloody draw!?");
+        console.log("%c *** Computer wins the game! ***", "color: red");
     }
 }
 
