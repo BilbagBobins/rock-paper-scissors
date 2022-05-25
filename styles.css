@@ -1,0 +1,119 @@
+/* * {
+    border: solid red 1px;
+} */
+
+body,
+html {
+    height: 100%;
+    margin: 0;
+}
+
+.bg {
+    background-image: url(img/background.jpg);
+    height: 100%;
+    background-position: center;
+    background-repeat: no-repeat;
+    background-size: cover;
+    background-color: rgb(50, 156, 243);
+    font-family: garamond, tahoma, 'sans-serif';
+    display: flex;
+    align-items: center;
+    flex-direction: column;
+}
+
+.button-container {
+    height: 330px;
+    width: 100%;
+    padding: 20px;
+    display: flex;
+    justify-content: center;
+    gap: 25px;
+}
+
+.rps {
+    margin-top: 115px;
+    height: 180px;
+    width: 180px;
+    font-size: 35px;
+}
+
+.rps:hover {
+    transform: scale(1.05);
+    border: 5px solid rgba(255, 255, 255, 0.5);
+}
+
+.rps,
+.winner button{
+    font-weight: bold;
+    color: rgba(255, 255, 255, 0.8);
+    background-color: rgba(220, 220, 220, 0.5);
+    border-radius: 25px;
+    border: 0;
+    box-shadow: 4px 5px 5px rgb(0 0 0 / 20%);
+    font-family: garamond, tahoma, 'sans-serif';
+}
+
+.score-container,
+.round-container,
+.round-winner {
+    margin: 10px 0;
+    height: 30px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 50px;
+    width: 50%;
+    background-color: rgba(220, 220, 220, 0.8);
+    border-radius: 20px;
+    font-size: 25px
+}
+.winner,
+.winner div,
+.winner button {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    gap: 70px;
+}
+
+.winner button {
+    height: 70px;
+    width: 200px;
+    font-size: 25px;
+    transition: width 1.5s;
+}
+
+.winner button:hover {
+    width: 800px;
+}
+
+.winner div {
+    margin-top: 50px;
+    height: 70px;
+    width: 300px;
+    font-size: 30px;
+    font-weight: bold;
+    color: rgb(238, 67, 0);
+    background-color: rgba(220, 220, 220, 1);
+    border-radius: 25px;
+    border: 0;
+    box-shadow: 4px 5px 5px rgb(0 0 0 / 20%);
+    font-family: garamond, tahoma, 'sans-serif';
+}
+
+@keyframes append-animate {
+	from {
+		transform: scale(0);
+		opacity: 0;
+	}
+	to {
+		transform: scale(1);
+		opacity: 1;
+	}
+}
+
+.winner div {
+	transform-origin: 50% 0;
+	animation: append-animate .5s linear;
+}
