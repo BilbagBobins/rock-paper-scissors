@@ -44,16 +44,26 @@ function playRound(playerSelection, computerSelection) {
 }
 
 function results(message){
-    roundWinner.textContent = message;
-    roundWinnerDiv.appendChild(roundWinner);
+    roundWinner.textContent = '';
+    setTimeout(function() {
+        roundWinner.textContent = message;
+        roundWinnerDiv.appendChild(roundWinner);
+    }, 500);
 }
 
 function endgame(winner) {
-    const endText = document.createElement('div');
-    endText.textContent = winner;
-    winnerDiv.appendChild(endText);
-    winnerDiv.appendChild(newGameButton);
-    newGameButton.textContent = 'New Game';
+    const winnerDiv = document.createElement('div')
+    winnerDiv.classList.add('winner');
+    gameContain.appendChild(winnerDiv);
+    setTimeout(function () {
+        const endText = document.createElement('div');
+        endText.textContent = winner;
+        winnerDiv.appendChild(endText);  
+    }, 1200);
+    setTimeout(function() {
+        winnerDiv.appendChild(newGameButton); 
+        newGameButton.textContent = 'New Game';
+    }, 2300);
 }
 
 function runningTotal(player,computer) {
@@ -63,6 +73,14 @@ function runningTotal(player,computer) {
 }
 
 function game(playerSelection) {
+    if (gameCounter < 1) {
+        roundWinnerDiv = document.createElement('div');
+        roundWinnerDiv.setAttribute('class', 'round-winner');
+        roundContainer = document.createElement('div');
+        roundContainer.setAttribute('class', 'round-container');
+        gameContain.appendChild(roundContainer);
+        setTimeout(function() {gameContain.appendChild(roundWinnerDiv)}, 500);
+    }
     const computerSelection = computerPlay();
     roundText.textContent = (`Computer plays ${computerSelection}`);
     roundContainer.appendChild(roundText);
@@ -80,6 +98,7 @@ function game(playerSelection) {
         endgame("Player Wins!");
         buttonDisable();
     }
+    gameCounter++;
 }
 
 function buttonDisable() {
@@ -88,17 +107,19 @@ function buttonDisable() {
     document.getElementById('scissors').disabled = true;
 }
 
-const roundContainer = document.querySelector('.round-container');
-const scoreContainer = document.querySelector('.score-container');
-const winnerDiv = document.querySelector('.winner');
-const buttons = document.querySelectorAll('button');
-const roundWinnerDiv = document.querySelector('.round-winner');
+let gameCounter = 0;
 
+let roundContainer = '';
+let roundWinnerDiv = '';
+
+const scoreContainer = document.querySelector('.score-container');
+const buttons = document.querySelectorAll('button');
 const newGameButton = document.createElement('button');
 newGameButton.addEventListener('click', () => {
     location.reload();
 })
 
+const gameContain = document.querySelector('.game-container');
 const roundText = document.createElement('span');
 const roundWinner = document.createElement('span');
 const totals = document.getElementById('totals');
